@@ -25,8 +25,8 @@ def authorize(driver):
     base_page = BasePage(driver)
     base_page.wait_for_element_hide(BaseLocators.OVERLAY)
 
-    driver.find_element(*BaseLocators.BUTTON_ENTER_ACCOUNT).click()
-    driver.find_element(*BaseLocators.INPUT_EMAIL).send_keys(Credentials.EMAIL)
-    driver.find_element(*BaseLocators.INPUT_PASSWORD).send_keys(Credentials.PASSWORD)
-    driver.find_element(*BaseLocators.BUTTON_LOGIN).click()
+    base_page.find_element(BaseLocators.BUTTON_ENTER_ACCOUNT).click()
+    base_page.find_element(BaseLocators.INPUT_EMAIL).send_keys(Credentials.EMAIL)
+    base_page.find_element(BaseLocators.INPUT_PASSWORD).send_keys(Credentials.PASSWORD)
+    base_page.find_element(BaseLocators.BUTTON_LOGIN).click()
     return driver

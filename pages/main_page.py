@@ -71,12 +71,10 @@ class MainPage(BasePage):
     @allure.step("Получение номера заказа")
     def get_order_number(self):
         # Ждем появления элемента с номером заказа
-        WebDriverWait(self.driver, 25).until(
-            EC.visibility_of_element_located(MainPageLocators.ORDER_NUMBER))
+        self.wait_for_element_visibility_with_custom_timeout(MainPageLocators.ORDER_NUMBER)
 
         # Ждем, пока номер заказа обновится (пока не будет равен "9999")
-        WebDriverWait(self.driver, 25).until_not(
-            EC.text_to_be_present_in_element(MainPageLocators.ORDER_NUMBER, "9999"))
+        self.wait_for_text_to_be_present_in_element(MainPageLocators.ORDER_NUMBER, "9999")
 
         # Получаем текст элемента с номером заказа
         return self.get_text_on_element(MainPageLocators.ORDER_NUMBER)

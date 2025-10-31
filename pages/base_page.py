@@ -32,6 +32,17 @@ class BasePage:
     def find_element(self, locator):
         return self.driver.find_element(*locator)
 
+    @allure.step("Ожидание кликабельности элемента")
+    def wait_for_element_to_be_clickable(self, locator, timeout=10):
+        return WebDriverWait(self.driver, timeout).until(EC.element_to_be_clickable(locator))
+
+    @allure.step("Ожидание, пока текст в элементе не изменится")
+    def wait_for_text_to_be_present_in_element(self, locator, text, timeout=25):
+        return WebDriverWait(self.driver, timeout).until_not(EC.text_to_be_present_in_element(locator, text))
+
+    @allure.step("Ожидание видимости элемента с заданным временем ожидания")
+    def wait_for_element_visibility_with_custom_timeout(self, locator, timeout=25):
+        return WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located(locator))
 
     @allure.step('Подождать пока элемент не станет невидимым')
     def wait_for_element_hide(self, locator):

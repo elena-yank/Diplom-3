@@ -27,12 +27,10 @@ class FeedPage(BasePage):
     @allure.step("Переход в историю заказов")
     def go_to_order_history(self):
         self.wait_for_element_hide(BaseLocators.OVERLAY)
-        WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable(AccountLocators.BUTTON_PERSONAL_ACCOUNT))
+        self.wait_for_element_to_be_clickable(AccountLocators.BUTTON_PERSONAL_ACCOUNT)
         self.click_on_element(AccountLocators.BUTTON_PERSONAL_ACCOUNT)
         self.wait_for_element_hide(BaseLocators.OVERLAY)
-        WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable(AccountLocators.LINK_ORDER_HISTORY))
+        self.wait_for_element_to_be_clickable(AccountLocators.LINK_ORDER_HISTORY)
         self.click_on_element(AccountLocators.LINK_ORDER_HISTORY)
 
     @allure.step("Получение номера заказа из истории")
