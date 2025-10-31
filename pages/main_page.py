@@ -1,6 +1,4 @@
 import allure
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
 
 from locators.account_locators import AccountLocators
 from locators.base_locators import BaseLocators
@@ -86,7 +84,7 @@ class MainPage(BasePage):
     def _wait_and_click(self, locator):
         """Вспомогательный метод для ожидания и клика по элементу"""
         self.wait_for_element_hide(BaseLocators.OVERLAY)
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(locator))
+        self.wait_for_element_to_be_clickable(locator)
         self.click_on_element(locator)
 
     @allure.step("Ожидание закрытия модального окна с номером заказа")

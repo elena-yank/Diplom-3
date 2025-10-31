@@ -78,3 +78,7 @@ class BasePage:
     @allure.step("Подождать пока элемент не станет невидимым")
     def wait_until_element_invisible(self, locator, timeout=10):
         WebDriverWait(self.driver, timeout).until(EC.invisibility_of_element_located(locator))
+        
+    @allure.step("Получить текущий URL")
+    def get_current_url(self):
+        return self.driver.current_url
